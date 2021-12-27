@@ -47,7 +47,7 @@ if echo "$UMASK" | grep -Eq '0[0-7]{3}' ; then
     umask "$UMASK"
 fi
 
-java -Dsun.jnu.encoding=UTF-8 -Dfile.encoding=UTF-8 -Djava.awt.headless=true -jar /opt/JDownloader/app/JDownloader.jar -norestart &
+java -Dsun.jnu.encoding=UTF-8 -Dfile.encoding=UTF-8 -Djava.awt.headless=true -jar /opt/JDownloader/app/JDownloader.jar --norestart &
 PID=$!
 wait $PID
 wait $PID

@@ -18,11 +18,11 @@ ENV LANGUAGE="C.UTF-8"
 ENV LC_ALL="C.UTF-8"
 ENV UMASK=''
 COPY ./${ARCH}/*.jar /opt/JDownloader/libs/
+COPY JDownloader.jar /opt/JDownloader/
 # archive extraction uses sevenzipjbinding library
 # which is compiled against libstdc++
 RUN mkdir -p /opt/JDownloader/app && \
-    apk add --update libstdc++ ffmpeg wget && \
-    wget -O /opt/JDownloader/JDownloader.jar "http://installer.jdownloader.org/JDownloader.jar?$RANDOM" && \
+    apk add --update libstdc++ && \
     chmod 777 /opt/JDownloader/ -R && \
     apk del wget --purge && \
     rm /usr/bin/qemu-*-static
@@ -32,6 +32,7 @@ COPY default-config.json.dist /opt/JDownloader/org.jdownloader.api.myjdownloader
 COPY configure.sh /usr/bin/configure
 
 EXPOSE 3129
+EXPOSE 5800
 WORKDIR /opt/JDownloader
 
 
